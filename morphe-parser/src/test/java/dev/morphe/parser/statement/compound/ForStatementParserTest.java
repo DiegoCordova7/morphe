@@ -16,7 +16,7 @@ class ForStatementParserTest extends AParserTest {
   void parsesCompleteForStatement() {
     ForStatement forStatement = new ForStatementParser(
         cursor("""
-                for (Integer i = 0; i < 10; i++) {
+                for (i : Integer = 0; i < 10; i++) {
                     return i;
                 }
                 """)
@@ -50,7 +50,7 @@ class ForStatementParserTest extends AParserTest {
   void parsesForWithoutCondition() {
     ForStatement forStatement = new ForStatementParser(
         cursor("""
-                for (Integer i = 0; ; i++) {
+                for (i : Integer = 0; ; i++) {
                     return i;
                 }
                 """)
@@ -64,7 +64,7 @@ class ForStatementParserTest extends AParserTest {
   void parsesForWithoutUpdate() {
     ForStatement forStatement = new ForStatementParser(
         cursor("""
-                for (Integer i = 0; i < 10; ) {
+                for (i : Integer = 0; i < 10; ) {
                     return i;
                 }
                 """)
@@ -110,7 +110,7 @@ class ForStatementParserTest extends AParserTest {
   @Test
   void parsesAssignmentUpdate() {
     ForStatement forStatement = new ForStatementParser(
-        cursor("for (Integer i = 0; i < 10; i++) { }")
+        cursor("for (i : Integer = 0; i < 10; i++) { }")
     ).parse();
     ExpressionStatement update = assertInstanceOf(
         ExpressionStatement.class, forStatement.update()
@@ -128,7 +128,7 @@ class ForStatementParserTest extends AParserTest {
 
   @Test
   void preservesSourceRange() {
-    String source = "for (Integer i = 0; i < 10; i++) { }";
+    String source = "for (i: Integer = 0; i < 10; i++) { }";
     ForStatement forStatement = new ForStatementParser(cursor(source)).parse();
     assertEquals(0, forStatement.range().start().offset());
     assertEquals(source.length(), forStatement.range().end().offset());
@@ -139,7 +139,7 @@ class ForStatementParserTest extends AParserTest {
     assertThrows(
         UnexpectedTokenException.class,
         () -> new ForStatementParser(
-            cursor("for Integer i = 0; i < 10; i++) { }")
+            cursor("for i : Integer = 0; i < 10; i++) { }")
         ).parse()
     );
   }
@@ -149,7 +149,7 @@ class ForStatementParserTest extends AParserTest {
     assertThrows(
         UnexpectedTokenException.class,
         () -> new ForStatementParser(
-            cursor("for (Integer i = 0; i < 10; i++ { }")
+            cursor("for (i : Integer = 0; i < 10; i++ { }")
         ).parse()
     );
   }

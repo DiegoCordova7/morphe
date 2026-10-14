@@ -89,15 +89,14 @@ public final class ForStatementParser extends AbstractParser implements IStateme
   /**
    * Determines whether the current tokens can start a variable declaration.
    *
-   * <p>A declaration is recognized when the current token is a primitive
-   * type or when two consecutive identifiers are present, representing a
-   * named type followed by the declared variable name.</p>
+   * <p>A declaration is recognized when an identifier is followed by a colon,
+   * representing the new syntax (e.g., {@code i : Integer}).
+   * </p>
    *
    * @return {@code true} if the current tokens start a variable declaration
    */
   private boolean startsVariableDeclaration() {
-    if (isPrimitiveType(cursor.current().kind())) return true;
-    return cursor.check(IdentifierTokenKind.IDENTIFIER) && cursor.peek(1).kind() == IdentifierTokenKind.IDENTIFIER;
+    return cursor.check(IdentifierTokenKind.IDENTIFIER) && cursor.peek(1).kind() == PunctuationTokenKind.COLON;
   }
 
   /**

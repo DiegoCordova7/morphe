@@ -1,56 +1,13 @@
-
 plugins {
     id 'java-library'
     id 'maven-publish'
 }
 
-group = 'dev.morphe'
-version = '1.0.0'
-
-def useGitHubPackages = providers.gradleProperty('githubPackages')
-        .map { it.toBoolean() }
-        .getOrElse(false)
-
-repositories {
-    if (useGitHubPackages) {
-        maven {
-            name = 'GitHubLexer'
-            url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe-lexer')
-            credentials {
-                username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
-                password = findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
-            }
-        }
-
-        maven {
-            name = 'GitHubAst'
-            url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe-ast')
-            credentials {
-                username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
-                password = findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
-            }
-        }
-    } else {
-        mavenLocal()
-    }
-
-    mavenCentral()
-}
-
 dependencies {
-    api 'dev.morphe:morphe-lexer:1.0.0'
-    api 'dev.morphe:morphe-ast:1.0.0'
-
+    api project(':morphe-lexer')
+    api project(':morphe-ast')
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-    withSourcesJar()
-    withJavadocJar()
 }
 
 publishing {
@@ -61,7 +18,7 @@ publishing {
             pom {
                 name = 'Morphe Parser'
                 description = 'Parsing component for the Morphe programming language.'
-                url = 'https://github.com/DiegoCordova7/morphe-parser'
+                url = 'https://github.com/DiegoCordova7/morphe' // <-- Apunta al monorepo
 
                 licenses {
                     license {
@@ -72,9 +29,9 @@ publishing {
                 }
 
                 scm {
-                    connection = 'scm:git:git://github.com/DiegoCordova7/morphe-parser.git'
-                    developerConnection = 'scm:git:ssh://github.com/DiegoCordova7/morphe-parser.git'
-                    url = 'https://github.com/DiegoCordova7/morphe-parser'
+                    connection = 'scm:git:git://github.com/DiegoCordova7/morphe.git'
+                    developerConnection = 'scm:git:ssh://github.com/DiegoCordova7/morphe.git'
+                    url = 'https://github.com/DiegoCordova7/morphe'
                 }
 
                 developers {
@@ -89,10 +46,14 @@ publishing {
     }
 
     repositories {
+        def useGitHubPackages = providers.gradleProperty('githubPackages')
+                .map { it.toBoolean() }
+                .getOrElse(false)
+
         if (useGitHubPackages) {
             maven {
                 name = 'GitHubPackages'
-                url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe-parser')
+                url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe') // <-- Paquete unificado
 
                 credentials {
                     username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
@@ -101,8 +62,4 @@ publishing {
             }
         }
     }
-}
-
-test {
-    useJUnitPlatform()
 }

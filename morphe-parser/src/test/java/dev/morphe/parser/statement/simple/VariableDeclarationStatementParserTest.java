@@ -5,6 +5,7 @@ import dev.morphe.ast.source.SourceRange;
 import dev.morphe.ast.statement.IStatement;
 import dev.morphe.ast.statement.VariableDeclarationStatement;
 import dev.morphe.ast.type.ArrayType;
+import dev.morphe.ast.type.ImmutableType;
 import dev.morphe.ast.type.NamedType;
 import dev.morphe.ast.type.PrimitiveType;
 import dev.morphe.parser.AParserTest;
@@ -18,7 +19,7 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesVariableWithoutInitializer() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Integer value;")
+        cursor("value : Integer;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertEquals("value", declaration.name());
@@ -30,7 +31,7 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesVariableWithInitializer() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Integer value = 10;")
+        cursor("value : Integer = 10;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertEquals("value", declaration.name());
@@ -43,11 +44,11 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesConstantWithInitializer() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("#Integer MAX = 100;")
+        cursor("MAX : #Integer = 100;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertEquals("MAX", declaration.name());
-    assertEquals(PrimitiveType.INTEGER, declaration.type());
+    assertEquals(new ImmutableType(PrimitiveType.INTEGER), declaration.type());
     assertTrue(declaration.isConstant());
     LiteralExpression initializer = assertInstanceOf(LiteralExpression.class, declaration.initializer());
     assertEquals(100, initializer.value());
@@ -56,7 +57,7 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesNamedTypeDeclaration() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Person person;")
+        cursor("person : Person;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     NamedType type = assertInstanceOf(NamedType.class, declaration.type());
@@ -69,11 +70,11 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesNamedTypeConstant() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("#Person DEFAULT_PERSON = person;")
+        cursor("DEFAULT_PERSON : #Person = person;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
-    NamedType type = assertInstanceOf(NamedType.class, declaration.type());
-    assertEquals("Person", type.name());
+    ImmutableType type = assertInstanceOf(ImmutableType.class, declaration.type());
+    assertEquals("Person", ((NamedType) type.innerType()).name());
     assertEquals("DEFAULT_PERSON", declaration.name());
     assertTrue(declaration.isConstant());
     assertNotNull(declaration.initializer());
@@ -82,7 +83,7 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesArrayTypeDeclaration() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Integer[][] values;")
+        cursor("values : Integer[][];")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertEquals("values", declaration.name());
@@ -94,7 +95,7 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void parsesInitializerExpression() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Integer value = 1 + 2 * 3;")
+        cursor("value : Integer = 1 + 2 * 3;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertNotNull(declaration.initializer());
@@ -111,10 +112,10 @@ class VariableDeclarationStatementParserTest extends AParserTest {
   @Test
   void preservesSourceRange() {
     IStatement statement = new VariableDeclarationStatementParser(
-        cursor("Integer value = 10;")
+        cursor("value : Integer = 10;")
     ).parse();
     SourceRange range = statement.range();
     assertEquals(0, range.start().offset());
-    assertEquals(19, range.end().offset());
+    assertEquals(21, range.end().offset());
   }
 }

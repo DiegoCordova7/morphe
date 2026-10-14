@@ -25,7 +25,7 @@ class StatementParserTest extends AParserTest {
   @Test
   void dispatchesPrimitiveVariableDeclaration() {
     IStatement statement = new StatementParser(
-        cursor("Integer value = 10;")
+        cursor("value : Integer = 10;")
     ).parse();
     assertInstanceOf(VariableDeclarationStatement.class, statement);
   }
@@ -33,7 +33,7 @@ class StatementParserTest extends AParserTest {
   @Test
   void dispatchesNamedTypeVariableDeclaration() {
     IStatement statement = new StatementParser(
-        cursor("Person person;")
+        cursor("person : Person;")
     ).parse();
     assertInstanceOf(VariableDeclarationStatement.class, statement);
   }
@@ -41,7 +41,7 @@ class StatementParserTest extends AParserTest {
   @Test
   void dispatchesConstantDeclaration() {
     IStatement statement = new StatementParser(
-        cursor("#Integer PI = 3.1416;")
+        cursor("PI : #Integer = 3.1416;")
     ).parse();
     VariableDeclarationStatement declaration = assertInstanceOf(VariableDeclarationStatement.class, statement);
     assertTrue(declaration.isConstant());

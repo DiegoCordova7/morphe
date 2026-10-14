@@ -1,0 +1,25 @@
+allprojects {
+    group = 'dev.morphe'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.hasPlugin('java') || project.plugins.hasPlugin('java-library')) {
+            project.java {
+                toolchain {
+                    languageVersion = JavaLanguageVersion.of(17)
+                }
+            }
+
+            project.test {
+                useJUnitPlatform()
+            }
+        }
+    }
+}
