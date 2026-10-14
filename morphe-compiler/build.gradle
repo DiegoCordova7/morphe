@@ -20,7 +20,7 @@ publishing {
             pom {
                 name = 'Morphe Compiler'
                 description = 'Compiler infrastructure for the Morphe programming language.'
-                url = 'https://github.com/DiegoCordova7/morphe' // <-- Apunta al monorepo unificado
+                url = 'https://github.com/DiegoCordova7/morphe'
 
                 licenses {
                     license {
@@ -55,7 +55,7 @@ publishing {
         if (useGitHubPackages) {
             maven {
                 name = 'GitHubPackages'
-                url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe') // <-- Paquete unificado
+                url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe')
 
                 credentials {
                     username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
