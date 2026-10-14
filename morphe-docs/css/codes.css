@@ -1,0 +1,48 @@
+.tok-kw,
+.cm-s-morphe .cm-keyword {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.tok-type,
+.cm-s-morphe .cm-type {
+    color: var(--type);
+}
+
+.tok-str,
+.cm-s-morphe .cm-string {
+    color: var(--string);
+}
+
+.tok-fn,
+.cm-s-morphe .cm-def {
+    color: var(--function);
+    font-weight: 600;
+}
+
+.tok-com,
+.cm-s-morphe .cm-comment {
+    color: var(--faint);
+    font-style: italic;
+}
+
+.tok-num,
+.cm-s-morphe .cm-number {
+    color: var(--number);
+}
+
+.tok-op,
+.cm-s-morphe .cm-operator {
+    color: var(--operator);
+}
+
+.tok-punct,
+.cm-s-morphe .cm-punctuation,
+.cm-s-morphe .cm-bracket,
+.cm-s-morphe .cm-delimiter {
+    color: var(--faint);
+}
+
+.cm-s-morphe .cm-variable {
+    color: var(--paper);
+}

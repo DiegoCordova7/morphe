@@ -1,0 +1,11 @@
+rootProject.name = 'morphe'
+
+include 'morphe-api'
+include 'morphe-ast'
+include 'morphe-bytecode'
+include 'morphe-compiler'
+include 'morphe-lexer'
+include 'morphe-parser'
+include 'morphe-runtime'
+include 'morphe-semantic'
+include 'morphe-vm'

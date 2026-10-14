@@ -1,0 +1,75 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'io.github.diegocordova7'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Morphe Bytecode'
+                description = 'Bytecode representation and infrastructure for the Morphe programming language, providing immutable programs, instructions, constants, types, functions, and execution metadata.'
+                url = 'https://github.com/DiegoCordova7/morphe-bytecode'
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        distribution = 'repo'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/DiegoCordova7/morphe-bytecode.git'
+                    developerConnection = 'scm:git:ssh://github.com/DiegoCordova7/morphe-bytecode.git'
+                    url = 'https://github.com/DiegoCordova7/morphe-bytecode'
+                }
+                developers {
+                    developer {
+                        id = 'DiegoCordova'
+                        name = 'DiegoCordova'
+                        email = 'diegocordovaprogramacion@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'Local'
+            url = layout.buildDirectory.dir('local-repository')
+        }
+        maven {
+            name = 'GitHubPackages'
+            url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe-bytecode')
+            credentials {
+                username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
+                password = findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

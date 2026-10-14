@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morphe — a structured, pattern-matched language</title>
+    <meta
+      name="description"
+      content="Morphe is a strongly-typed language with structural pattern matching, compiled to bytecode and run on a custom virtual machine." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/codes.css" />
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/pages/index.css" />
+    <link rel="icon" type="image/svg+xml" href="./img/morphe-icon.svg" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <header class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Typed · Pattern-matched · Own VM</span>
+          <h1>A language built around <em>shape</em>, not just syntax.</h1>
+          <p class="lede">
+            Morphe is a strongly-typed language with structural pattern
+            matching. Source compiles to bytecode and runs on a custom virtual
+            machine you can inspect end to end.
+          </p>
+          <div class="btn-row">
+            <a href="syntax.html" class="btn btn-primary">Read the docs</a>
+            <a href="playground.html" class="btn btn-ghost">Open the
+              playground</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="morph-glow"></div>
+          <div class="morph-ring"></div>
+          <div class="morph-shape"></div>
+          <div class="morph-tag">
+            <span class="tok-type">Shape</span> { kind:
+            <span class="morph-words">
+              <span class="tok-str">"circle"</span>
+              <span class="tok-str">"square"</span>
+              <span class="tok-str">"leaf"</span>
+            </span>
+            }
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section-narrow">
+      <div class="container showcase">
+        <div class="showcase-copy">
+          <h2>Shape in, <em>behavior</em> out.</h2>
+          <p>
+            Declare a type, build a value, and let <code>match</code> take it
+            apart by its shape. No visitors, no casts, no ceremony.
+          </p>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="filename">main.mrf</span>
+          </div>
+          <div class="panel-body">
+            <pre
+              class="code-block"><span class="tok-kw">type</span> <span class="tok-type">City</span> {
+  name : <span class="tok-type">String</span>;
+}
+
+<span class="tok-kw">func</span> <span class="tok-fn">main</span>() : <span class="tok-type">Void</span> {
+  <span class="tok-type">City</span> city = <span class="tok-kw">new</span> <span class="tok-type">City</span> {
+    name = <span class="tok-str">"Moctezuma"</span>;
+  };
+
+  <span class="tok-kw">match</span> (city) {
+    <span class="tok-type">City</span> { name: <span class="tok-str">"Moctezuma"</span> } => {
+      <span class="tok-fn">print</span>(city.name);
+    }
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container pipeline-layout">
+        <div class="pipeline-intro">
+          <h2>From source to <em>runtime</em>.</h2>
+          <p>
+            Every stage is a small, readable piece you can inspect. The VM runs
+            bytecode designed for Morphe, not borrowed from a host language.
+          </p>
+        </div>
+        <ol class="pipeline">
+          <li class="pipeline-step">
+            <span class="step-label">Source</span>
+            <span class="step-note">Your .mrf file, as plain text.</span>
+          </li>
+          <li class="pipeline-step">
+            <span class="step-label">Lexer</span>
+            <span class="step-note">Turns characters into tokens.</span>
+          </li>
+          <li class="pipeline-step">
+            <span class="step-label">Parser</span>
+            <span class="step-note">Builds the syntax tree.</span>
+          </li>
+          <li class="pipeline-step">
+            <span class="step-label">Semantic</span>
+            <span class="step-note">Checks types and structural shapes.</span>
+          </li>
+          <li class="pipeline-step">
+            <span class="step-label">Compiler</span>
+            <span class="step-note">Lowers the tree to instructions.</span>
+          </li>
+          <li class="pipeline-step">
+            <span class="step-label">Bytecode</span>
+            <span class="step-note">Compact instructions for the Morphe
+              VM.</span>
+          </li>
+          <li class="pipeline-step highlighted">
+            <span class="step-label">VM Runtime</span>
+            <span class="step-note">Executes the program, step by step.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Why <em>Morphe</em></h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Structured types</h3>
+            <p>
+              Data is declared as typed structures, so shapes are explicit and
+              checked before a program ever runs.
+            </p>
+          </div>
+          <div class="feature">
+            <h3>Structural matching</h3>
+            <p>
+              <code>match</code> destructures values against a shape and a set
+              of field constraints in one expression.
+            </p>
+          </div>
+          <div class="feature">
+            <h3>Own virtual machine</h3>
+            <p>
+              Compiled programs run on bytecode designed for Morphe, not
+              borrowed from another host language.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-narrow quote-section">
+      <div class="container">
+        <blockquote class="manifesto-quote">
+          "Once you understand how programming languages work beneath the
+          surface, you also realize that they are not fixed ideas—they are
+          design choices."
+        </blockquote>
+        <p>
+          Morphe is a long-term exploration of language design. Read the
+          <a href="manifesto.html" class="text-link">full manifesto</a>
+          for the principles behind it.
+        </p>
+      </div>
+    </section>
+
+    <div id="site-footer"></div>
+    <script src="./js/load-layout.js"></script>
+  </body>
+</html>

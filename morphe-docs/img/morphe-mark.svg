@@ -1,0 +1,338 @@
+<svg width="512" height="512" viewBox="0 0 512 512"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <linearGradient id="morph"
+                    x1="0%" y1="100%"
+                    x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb454"/>
+      <stop offset="48%" stop-color="#ffca85"/>
+      <stop offset="100%" stop-color="#ff6b57"/>
+    </linearGradient>
+
+    <linearGradient id="wing"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb454"/>
+      <stop offset="100%" stop-color="#a8e6a1"/>
+    </linearGradient>
+
+    <linearGradient id="chrysalis"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17171d"/>
+      <stop offset="100%" stop-color="#101014"/>
+    </linearGradient>
+
+  </defs>
+
+  <rect width="512"
+        height="512"
+        rx="96"
+        fill="#08080b"/>
+
+  <g id="chrysalis">
+
+    <path
+      d="
+        M 256 91
+        C 225 91, 195 104, 172 129
+        C 150 153, 137 184, 134 219
+        C 130 262, 139 302, 158 338
+        C 177 373, 202 399, 228 416
+        C 240 424, 250 428, 256 431
+        C 262 428, 272 424, 284 416
+        C 310 399, 335 373, 354 338
+        C 373 302, 382 262, 378 219
+        C 375 184, 362 153, 340 129
+        C 317 104, 287 91, 256 91
+        Z
+      "
+      fill="url(#chrysalis)"
+      stroke="url(#morph)"
+      stroke-width="8"
+      stroke-linejoin="round"/>
+
+    <path
+      d="
+        M 177 140
+        C 201 128, 228 122, 256 122
+        C 284 122, 311 128, 335 140
+      "
+      fill="none"
+      stroke="#6fd3ff"
+      stroke-width="4"
+      stroke-linecap="round"
+      opacity=".9"/>
+
+    <path
+      d="
+        M 157 169
+        C 187 153, 220 147, 256 147
+        C 292 147, 325 153, 355 169
+      "
+      fill="none"
+      stroke="#6fd3ff"
+      stroke-width="4"
+      stroke-linecap="round"
+      opacity=".85"/>
+
+    <path
+      d="
+        M 143 201
+        C 177 185, 216 179, 256 179
+        C 296 179, 335 185, 369 201
+      "
+      fill="none"
+      stroke="#6fd3ff"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      opacity=".8"/>
+
+    <path
+      d="
+        M 137 237
+        C 171 222, 213 216, 256 216
+        C 299 216, 341 222, 375 237
+      "
+      fill="none"
+      stroke="#6fd3ff"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      opacity=".8"/>
+
+    <path
+      d="
+        M 139 273
+        C 171 260, 213 254, 256 254
+        C 299 254, 341 260, 373 273
+      "
+      fill="none"
+      stroke="#a8e6a1"
+      stroke-width="3.2"
+      stroke-linecap="round"
+      opacity=".75"/>
+
+    <path
+      d="
+        M 148 309
+        C 177 298, 216 292, 256 292
+        C 296 292, 335 298, 364 309
+      "
+      fill="none"
+      stroke="#a8e6a1"
+      stroke-width="3"
+      stroke-linecap="round"
+      opacity=".7"/>
+
+    <path
+      d="
+        M 164 343
+        C 190 334, 222 330, 256 330
+        C 290 330, 322 334, 348 343
+      "
+      fill="none"
+      stroke="#ff9ec0"
+      stroke-width="3"
+      stroke-linecap="round"
+      opacity=".72"/>
+
+    <path
+      d="
+        M 185 374
+        C 207 368, 232 365, 256 365
+        C 280 365, 305 368, 327 374
+      "
+      fill="none"
+      stroke="#ff9ec0"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      opacity=".65"/>
+
+    <path
+      d="
+        M 256 104
+        C 250 142, 250 180, 253 219
+        C 256 258, 256 298, 258 335
+        C 259 365, 258 392, 256 417
+      "
+      fill="none"
+      stroke="#353541"
+      stroke-width="2"
+      stroke-linecap="round"
+      opacity=".8"/>
+
+    <circle cx="165" cy="157" r="3.2" fill="#ff8a65"/>
+    <circle cx="148" cy="205" r="3.2" fill="#ff8a65"/>
+    <circle cx="140" cy="252" r="3.2" fill="#ff8a65"/>
+
+    <circle cx="151" cy="300" r="3" fill="#a8e6a1"/>
+    <circle cx="169" cy="344" r="3" fill="#ff9ec0"/>
+
+    <path
+      d="M 160 181 C 151 213, 150 246, 156 274"
+      fill="none"
+      stroke="#5f5b55"
+      stroke-width="2"
+      stroke-linecap="round"
+      opacity=".8"/>
+
+    <path
+      d="M 171 313 C 179 337, 191 357, 207 374"
+      fill="none"
+      stroke="#5f5b55"
+      stroke-width="2"
+      stroke-linecap="round"
+      opacity=".65"/>
+
+    <path
+      d="
+        M 228 416
+        C 238 423, 249 429, 256 431
+        C 263 429, 274 423, 284 416
+      "
+      fill="none"
+      stroke="#ff9ec0"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      opacity=".85"/>
+
+  </g>
+
+  <g id="butterfly">
+
+    <path
+      d="
+        M 256 221
+        C 281 174, 315 132, 361 113
+        C 388 102, 414 104, 427 117
+        C 439 130, 434 151, 421 171
+        C 402 199, 370 220, 328 238
+        C 300 250, 278 250, 256 246
+        Z
+      "
+      fill="url(#wing)"
+      stroke="#f3eee6"
+      stroke-width="6"
+      stroke-linejoin="round"/>
+
+    <path
+      d="
+        M 256 246
+        C 285 247, 319 258, 348 278
+        C 375 296, 390 319, 385 337
+        C 380 355, 358 363, 336 357
+        C 305 349, 279 323, 256 285
+        Z
+      "
+      fill="#6fd3ff"
+      stroke="#f3eee6"
+      stroke-width="6"
+      stroke-linejoin="round"/>
+
+    <path
+      d="
+        M 265 228
+        C 300 198, 338 173, 386 150
+      "
+      fill="none"
+      stroke="#f3eee6"
+      stroke-width="4"
+      stroke-linecap="round"
+      opacity=".65"/>
+
+    <path
+      d="
+        M 267 258
+        C 298 274, 325 296, 350 325
+      "
+      fill="none"
+      stroke="#08080b"
+      stroke-width="4"
+      stroke-linecap="round"
+      opacity=".45"/>
+
+  </g>
+
+  <g id="body">
+
+    <path
+      d="
+        M 256 157
+        C 248 177, 248 207, 256 229
+        C 263 250, 263 280, 256 306
+        C 250 326, 251 345, 256 359
+      "
+      fill="none"
+      stroke="#f3eee6"
+      stroke-width="12"
+      stroke-linecap="round"/>
+
+    <path
+      d="
+        M 256 170
+        C 252 197, 253 221, 256 242
+        C 260 266, 260 290, 256 315
+      "
+      fill="none"
+      stroke="#ffb454"
+      stroke-width="5"
+      stroke-linecap="round"/>
+
+  </g>
+
+  <g id="antennae">
+
+    <path
+      d="
+        M 256 164
+        C 251 145, 239 131, 224 123
+      "
+      fill="none"
+      stroke="#f3eee6"
+      stroke-width="5"
+      stroke-linecap="round"/>
+
+    <path
+      d="
+        M 256 164
+        C 268 143, 282 132, 299 126
+      "
+      fill="none"
+      stroke="#f3eee6"
+      stroke-width="5"
+      stroke-linecap="round"/>
+
+    <circle
+      cx="223"
+      cy="122"
+      r="4"
+      fill="#6fd3ff"/>
+
+    <circle
+      cx="300"
+      cy="125"
+      r="4"
+      fill="#ff9ec0"/>
+
+  </g>
+
+  <path
+    d="
+      M 256 91
+      C 258 119, 258 139, 256 158
+      C 253 179, 253 198, 256 221
+    "
+    fill="none"
+    stroke="#ffb454"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+  <circle
+    cx="256"
+    cy="245"
+    r="7"
+    fill="#f3eee6"/>
+
+</svg>

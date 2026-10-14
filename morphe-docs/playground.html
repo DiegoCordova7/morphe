@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morphe — Playground</title>
+    <meta
+      name="description"
+      content="Write Morphe code in the browser and run it against a live instance of the compiler and virtual machine." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/codes.css" />
+    <link rel="stylesheet" href="./css/pages/playground.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+    <link rel="icon" type="image/svg+xml" href="./img/morphe-icon.svg" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+    <header class="playground-header section-narrow">
+      <div class="container">
+        <h1>The <em>playground</em></h1>
+        <p class="lede">
+          Write Morphe code and run it against a live instance of the engine
+          over the network.
+        </p>
+      </div>
+    </header>
+    <main class="playground-main">
+      <div class="container playground-container">
+        <div class="editor-grid">
+          <section class="panel editor-panel">
+            <div class="panel-header">
+              <span class="filename">main.mrf</span>
+              <button class="panel-action" id="sample-button">
+                Load sample
+              </button>
+            </div>
+            <div class="panel-body panel-body-editor">
+              <textarea id="source-code">
+type City {
+  name : String;
+}
+
+func main() : Void {
+  City city = new City {
+    name = "Moctezuma";
+  };
+
+  match (city) {
+    City { name: "Moctezuma" } => {
+      print(city.name);
+    }
+  }
+}</textarea>
+            </div>
+          </section>
+          <section class="panel console-panel">
+            <div class="panel-header">
+              <span class="filename execution-status">
+                <span id="status-dot" class="status-dot"></span>
+                <span id="status-text">Idle</span>
+              </span>
+              <button class="panel-action" id="clear-button">Clear</button>
+            </div>
+            <div class="panel-body panel-body-console">
+              <div id="console-output" class="console"></div>
+            </div>
+          </section>
+        </div>
+        <div class="playground-actions">
+          <button id="run-button" class="btn btn-primary">Run code</button>
+          <span class="run-kbd"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+          <span class="run-hint">
+            Runs on a live API. The first run may take a few seconds if the
+            server is asleep.
+          </span>
+        </div>
+      </div>
+    </main>
+    <div id="site-footer"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/mode/simple.min.js"></script>
+    <script src="./js/morphe-mode.js"></script>
+    <script type="module" src="./js/app.js"></script>
+    <script src="./js/load-layout.js"></script>
+  </body>
+</html>

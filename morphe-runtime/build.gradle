@@ -1,0 +1,80 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'io.github.diegocordova7'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'Morphe Runtime'
+                description = 'Runtime value and type system for the Morphe programming language.'
+                url = 'https://github.com/DiegoCordova7/morphe-runtime'
+
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        distribution = 'repo'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/DiegoCordova7/morphe-runtime.git'
+                    developerConnection = 'scm:git:ssh://github.com/DiegoCordova7/morphe-runtime.git'
+                    url = 'https://github.com/DiegoCordova7/morphe-runtime'
+                }
+
+                developers {
+                    developer {
+                        id = 'DiegoCordova'
+                        name = 'DiegoCordova'
+                        email = 'diegocordovaprogramacion@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'Local'
+            url = layout.buildDirectory.dir('local-repository')
+        }
+        maven {
+            name = 'GitHubPackages'
+            url = uri('https://maven.pkg.github.com/DiegoCordova7/morphe-runtime')
+            credentials {
+                username = findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
+                password = findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

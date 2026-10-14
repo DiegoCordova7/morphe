@@ -1,0 +1,197 @@
+:root {
+    --ink: #08080b;
+    --surface: #101014;
+    --surface-raised: #17171d;
+    --line: #23232b;
+    --line-strong: #353541;
+    --paper: #f3eee6;
+    --muted: #a09b93;
+    --faint: #5f5b55;
+
+    --accent-rgb: 255, 180, 84;
+    --accent: rgb(var(--accent-rgb));
+    --accent-hover: #ffca85;
+    --accent-2: #ff6b57;
+    --accent-soft: rgba(var(--accent-rgb), 0.08);
+    --accent-line: rgba(var(--accent-rgb), 0.35);
+    --gradient-accent: linear-gradient(120deg, #ffb454 0%, #ff6b57 100%);
+
+    --type: #6fd3ff;
+    --function: #a8e6a1;
+    --string: #ff9ec0;
+    --number: #ff8a65;
+    --operator: #b9a7ff;
+
+    --success: #a8e6a1;
+    --error: #ff6b6b;
+
+    --gold: var(--accent);
+    --teal: var(--type);
+
+    --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", "Fira Code", ui-monospace, monospace;
+    --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 48px;
+    --sp-8: 64px;
+    --sp-9: 96px;
+
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --radius-btn: 999px;
+
+    --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--ink);
+    color: var(--paper);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(60rem 40rem at 85% -10%, rgba(var(--accent-rgb), 0.16), transparent 60%),
+        radial-gradient(50rem 40rem at -10% 25%, rgba(255, 107, 87, 0.09), transparent 60%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 0%, #000 15%, transparent 80%);
+    mask-image: radial-gradient(ellipse 80% 65% at 50% 0%, #000 15%, transparent 80%);
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--ink);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7.5vw, 6rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    max-width: 14ch;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sp-4);
+    color: var(--paper);
+}
+
+h3 {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: var(--sp-2);
+}
+
+h1 em,
+h2 em {
+    font-style: italic;
+    color: var(--accent);
+}
+
+.text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+p {
+    color: var(--muted);
+}
+
+p+p {
+    margin-top: var(--sp-3);
+}
+
+.lede {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 56ch;
+    margin-top: var(--sp-5);
+}
+
+code,
+pre,
+textarea {
+    font-family: var(--font-mono);
+}
+
+pre.code-block {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: var(--sp-4);
+    border-radius: var(--radius-sm);
+    color: var(--paper);
+    font-size: 0.85rem;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+}

@@ -1,0 +1,21 @@
+# IDEs / Edición
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Gradle / Compilación Java
+.gradle/
+build/
+bin/
+out/
+.DS_Store
+
+# Archivos de entorno y logs
+*.log
+.env
+application-local.properties
+
+# Cache de Node (si en morphe-docs agregas herramientas web en el futuro)
+node_modules/
