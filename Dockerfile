@@ -1,12 +1,6 @@
 FROM eclipse-temurin:17-jdk-jammy AS build
 WORKDIR /app
 
-# Copiar configuración global de Gradle y la raíz del monorepo
-COPY gradlew gradlew
-COPY gradle gradle
-COPY build.gradle build.gradle
-COPY settings.gradle settings.gradle
-
 # Copiar todo el código fuente y submódulos (asegúrate de tener un .dockerignore limpio si hace falta)
 COPY . .
 
