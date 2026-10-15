@@ -3,6 +3,7 @@ package dev.morphe.engine;
 import dev.morphe.ast.CompilationUnit;
 import dev.morphe.bytecode.program.BytecodeProgram;
 import dev.morphe.compiler.Compiler;
+import dev.morphe.engine.listener.ICompilationListener;
 import dev.morphe.lexer.Lexer;
 import dev.morphe.lexer.exception.LexerException;
 import dev.morphe.lexer.token.Token;
@@ -39,6 +40,12 @@ import java.util.List;
  */
 public final class Engine {
 
+  private static ICompilationListener compilationListener;
+
+  public static void setCompilationListener(ICompilationListener listener) {
+    compilationListener = listener;
+  }
+
   private final String code;
   private BytecodeProgram program;
   private final VirtualMachine vm;
@@ -70,6 +77,11 @@ public final class Engine {
       SemanticContext semanticContext = new SemanticAnalysis().analyze(compilationUnit);
       Compiler compiler = new Compiler(compilationUnit, semanticContext);
       this.program = compiler.compile();
+      if (compilationListener != null) try {
+        compilationListener.onCompilationSuccess(program);
+      } catch (Exception exception) {
+        System.err.println("[Metrics Warning] Error registering metric: " + exception.getMessage());
+      }
       return EngineResult.success(program);
     } catch (LexerException exception) {
       return EngineResult.error(EnginePhase.LEXING, exception);
