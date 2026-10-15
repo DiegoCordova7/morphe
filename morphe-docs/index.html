@@ -74,12 +74,12 @@
 }
 
 <span class="tok-kw">func</span> <span class="tok-fn">main</span>() : <span class="tok-type">Void</span> {
-  <span class="tok-type">City</span> city = <span class="tok-kw">new</span> <span class="tok-type">City</span> {
+  city : <span class="tok-type">City</span> = <span class="tok-kw">new</span> <span class="tok-type">City</span> {
     name = <span class="tok-str">"Moctezuma"</span>;
   };
 
   <span class="tok-kw">match</span> (city) {
-    <span class="tok-type">City</span> { name: <span class="tok-str">"Moctezuma"</span> } => {
+    <span class="tok-type">City</span> { name : <span class="tok-str">"Moctezuma"</span> } => {
       <span class="tok-fn">print</span>(city.name);
     }
   }

@@ -1,20 +1,11 @@
 let editor;
 
 const SAMPLE_CODE = `func main() : Void {
-  Integer age = 25;
-
+  age : Integer = 25;
   match (age) {
-    0 .. 17 => {
-      print("Minor");
-    }
-
-    18 .. 64 => {
-      print("Adult");
-    }
-
-    _ => {
-      print("Senior");
-    }
+    0 .. 17 => print("Minor");
+    18 .. 64 => print("Adult");
+    _ => print("Senior");
   }
 }`;
 

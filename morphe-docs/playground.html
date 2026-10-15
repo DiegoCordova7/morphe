@@ -48,12 +48,12 @@ type City {
 }
 
 func main() : Void {
-  City city = new City {
+  city : City = new City {
     name = "Moctezuma";
   };
 
   match (city) {
-    City { name: "Moctezuma" } => {
+    City { name : "Moctezuma" } => {
       print(city.name);
     }
   }
