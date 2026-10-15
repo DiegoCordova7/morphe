@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080/api/morphe/run"/*"https://morphe-api.onrender.com/api/"*/;
+const API_BASE_URL = "https://morphe-api.onrender.com/api/morphe/run";
 
 export async function runCodeApi(code) {
   const response = await fetch(`${API_BASE_URL}`, {
