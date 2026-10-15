@@ -9,8 +9,6 @@ import dev.morphe.engine.EngineResult;
 import dev.morphe.vm.state.VMExecutionState;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import dev.morphe.metrics.MetricsSession;
-import java.sql.SQLException;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +33,6 @@ public final class MorpheExecutionService {
   private final ExecutorService executorService;
   private final int timeoutSeconds;
   private final int maxOutputLines;
-  private final MetricsSession metricsSession = new MetricsSession();
 
   public MorpheExecutionService(
       SessionManager sessionManager,
@@ -84,18 +81,6 @@ public final class MorpheExecutionService {
       if (!compilation.isSuccess()) {
         sessionManager.remove(sessionId);
         return new ExecutionResultDto(false, session.ioHandler().flushOutputLog(), compilation.error().getMessage(), null, null);
-      }
-      try {
-        metricsSession.recordBytecode(compilation.value());
-      } catch (SQLException e) {
-        sessionManager.remove(sessionId);
-        return new ExecutionResultDto(
-            false,
-            session.ioHandler().flushOutputLog(),
-            "Could not persist compiled bytecode to the database.",
-            null,
-            null
-        );
       }
       EngineResult<Void> execution = session.engine().execute();
       return createExecutionResult(sessionId, session, execution);
