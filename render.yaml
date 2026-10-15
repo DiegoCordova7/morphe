@@ -3,8 +3,6 @@ services:
     name: morphe-api
     region: oregon
     plan: free
-    buildCommand: ./gradlew bootJar
-    startCommand: java -jar build/libs/morphe-api-1.0.0.jar
     envVars:
       - key: JAVA_VERSION
         value: 17
